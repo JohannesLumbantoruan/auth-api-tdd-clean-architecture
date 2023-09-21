@@ -36,6 +36,36 @@ class UserRepositoryPostgres extends UserRepository {
 
         return new RegisteredUser({ ...result.rows[0] });
     }
+
+    async getPasswordByUsername(username) {
+        const query = {
+            text: 'SELECT password FROM users WHERE username = $1',
+            values: [username]
+        };
+
+        const result = await this._pool.query(query);
+
+        if (result.rowCount === 0) {
+            throw new InvariantError('username tidak ditemukan');
+        }
+
+        return result.rows[0].password;
+    }
+
+    async getIdByUsername(username) {
+        const query = {
+            text: 'SELECT id FROM users WHERE username = $1',
+            values: [username]
+        };
+
+        const result = await this._pool.query(query);
+
+        if (result.rowCount === 0) {
+            throw new InvariantError('username tidak ditemukan');
+        }
+
+        return result.rows[0].id;
+    }
 }
 
 module.exports = UserRepositoryPostgres;

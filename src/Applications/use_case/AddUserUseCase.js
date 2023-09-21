@@ -4,6 +4,8 @@ class AddUserUseCase {
     constructor({ userRepository, passwordHash }) {
         this._userRepository = userRepository;
         this._passwordHash = passwordHash;
+
+        this.execute = this.execute.bind(this);
     }
 
     async execute(useCasePayload) {

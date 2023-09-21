@@ -16,6 +16,8 @@
         "comma-dangle": "off",
         "no-underscore-dangle": "off",
         "class-methods-use-this": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "error",
+        "space-before-blocks": "off",
+        "no-console": "off"
     }
 }
